@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>七夕马力欧寻爱</title>
+    <script>
+      // 无极平台注入的页面元信息宏，本地预览时用空实现兜底
+      window.defineWujiPageMeta = function (meta) {
+        if (meta && meta.title) document.title = meta.title;
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/index.js"></script>
+  </body>
+</html>
