@@ -81,9 +81,10 @@
       <div class="center-content">
         <h1>💖 通关成功！</h1>
         <p style="font-weight: bold; color: #ff8c00;">
-          好吧，竟然给你通过了，让我看看你总共尝试了 <span class="attempt-count">{{ totalAttempts }}</span> 次，啧啧，菜，就多练！
+          竟然给你通过了，让我看看你总共尝试了 <span class="attempt-count">{{ totalAttempts }}</span> 次，啧啧，菜，就多练！
         </p>
         
+        <div class="reward-code">通关奖励：SF1228160515935</div>
         <div class="medal-pig">
           <div class="medal-icon">🏅</div>
         </div>
@@ -599,6 +600,14 @@ p {
   /* 78-100: run */
   78%, 88.9% { background-image: url('https://mario_qixi_quest_august.wuji.gtimg.cn/%E6%96%B0%E7%89%88%E5%B0%8F%E7%8C%AA%E7%BB%A7%E7%BB%AD%E8%B7%91-removebg-preview.png'); }
   89%, 100% { background-image: url('https://mario_qixi_quest_august.wuji.gtimg.cn/%E6%96%B0%E7%89%88%E5%B0%8F%E7%8C%AA%E8%B5%B7%E8%B7%91-removebg-preview.png'); }
+}
+
+.reward-code {
+  margin: 8px 0 4px;
+  font-size: 13px;
+  color: #ff8c00;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .medal-pig {
