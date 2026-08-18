@@ -84,7 +84,7 @@
           竟然给你通过了，让我看看你总共尝试了 <span class="attempt-count">{{ totalAttempts }}</span> 次，啧啧，菜，就多练！
         </p>
         
-        <div class="reward-code">通关奖励：SF1228160515935</div>
+        <div class="reward-code">你的通关奖励正在派送中...</div>
         <div class="medal-pig">
           <div class="medal-icon">🏅</div>
         </div>
