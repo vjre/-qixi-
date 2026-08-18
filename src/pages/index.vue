@@ -1,5 +1,16 @@
 <template>
   <div class="app-container" :class="{ 'screen-shake': isShaking }">
+    <audio ref="bgmRef" :src="bgmSrc" loop preload="auto"></audio>
+    <button
+      v-if="bgmStarted"
+      type="button"
+      class="bgm-toggle"
+      @click="toggleBgm"
+      :aria-label="bgmMuted ? '取消静音' : '静音'"
+    >
+      {{ bgmMuted ? '🔇' : '🎵' }}
+    </button>
+
     <!-- 首页 -->
     <div v-if="currentPage === 'home'" class="page active">
       <div class="scenery">
@@ -123,6 +134,30 @@ defineWujiPageMeta({
   description: '七夕专属挑战，答对所有问题通关'
 });
 
+const bgmSrc = `${import.meta.env.BASE_URL}bgm.mp3`;
+const bgmRef = ref(null);
+const bgmStarted = ref(false);
+const bgmMuted = ref(false);
+
+function playBgm() {
+  const audio = bgmRef.value;
+  if (!audio) return;
+  audio.volume = 0.45;
+  audio.muted = bgmMuted.value;
+  audio.play().catch(() => {});
+  bgmStarted.value = true;
+}
+
+function toggleBgm() {
+  const audio = bgmRef.value;
+  if (!audio) return;
+  bgmMuted.value = !bgmMuted.value;
+  audio.muted = bgmMuted.value;
+  if (!bgmMuted.value && audio.paused) {
+    audio.play().catch(() => {});
+  }
+}
+
 // ----------------------------------------------------
 // 关卡数据配置
 // ----------------------------------------------------
@@ -231,6 +266,7 @@ function startGame() {
   currentLevelIndex.value = 0;
   resetInputs();
   currentPage.value = 'game';
+  playBgm();
 }
 
 function resetInputs() {
@@ -328,6 +364,25 @@ function goHome() {
   width: 100vw;
   height: 100vh;
   position: relative;
+}
+
+.bgm-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 100;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page {
