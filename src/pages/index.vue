@@ -92,7 +92,7 @@
       <div class="center-content">
         <h1>💖 通关成功！</h1>
         <p style="font-weight: bold; color: #ff8c00;">
-          竟然给你通过了，让我看看你总共尝试了 <span class="attempt-count">{{ totalAttempts }}</span> 次，啧啧，菜，就多练！
+          竟然给你通过了，让我看看你总共尝试了 <span class="attempt-count">{{ totalAttempts }}</span> 次，{{ totalAttempts === 1 ? '太强了，是不是偷答案了？' : '啧啧，菜，就多练！' }}
         </p>
         
         <div class="reward-code">你的通关奖励正在派送中...</div>
@@ -102,9 +102,9 @@
         
         <div class="story-text">
           七夕至，鹊桥相会。<br>
-          比起神话里遥遥相望，我更珍惜眼前实实在在的你。<br>
-          有欢笑，也有磨合，庆幸我们依然愿意走向彼此。<br>
-          愿往后四季更迭，烟火寻常，我们陪伴如故。<br>
+          比起神话里遥遥相望，我更珍惜眼前实实在在的你<br>
+          有欢笑，也有磨合，庆幸我们依然愿意走向彼此<br>
+          愿往后四季更迭，烟火寻常，我们陪伴如故<br>
           不止七夕快乐，愿日日皆欢喜！
         </div>
       </div>
