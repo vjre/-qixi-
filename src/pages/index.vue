@@ -17,7 +17,7 @@
         <div v-for="(star, i) in stars" :key="'h-star-'+i" class="star" :style="star.style">{{ star.text }}</div>
       </div>
       <div class="center-content">
-        <h1>🌟 七夕超级玛丽闯关 🌟</h1>
+        <h1>🌟 七夕小猪快跑闯关 🌟</h1>
         <p>欢迎来到七夕专属挑战！<br>前方有6道关卡，答错就会被无情大锤砸回起点，全部答对才能看到终点惊喜哦！</p>
         <button class="game-btn" @click="startGame">开始闯关</button>
       </div>
@@ -210,6 +210,8 @@ const currentPage = ref('home');
 const totalAttempts = ref(0);
 const currentLevelIndex = ref(0);
 const failMsg = ref('');
+// 最后一题（陷阱题）空提交次数：第一次提示，第二次通关
+const trapEmptySubmitCount = ref(0);
 
 // 表单状态
 const singleSelected = ref(null);
@@ -264,6 +266,7 @@ function initScenery() {
 function startGame() {
   totalAttempts.value++;
   currentLevelIndex.value = 0;
+  trapEmptySubmitCount.value = 0;
   resetInputs();
   currentPage.value = 'game';
   playBgm();
@@ -300,7 +303,17 @@ function submitAnswer() {
     isCorrect = (selectedIndexes.length === config.correct.length && 
                  config.correct.every(val => selectedIndexes.includes(val)));
   } else if (config.type === 'trap') {
-    isCorrect = (selectedIndexes.length === 0);
+    if (selectedIndexes.length === 0) {
+      trapEmptySubmitCount.value++;
+      if (trapEmptySubmitCount.value === 1) {
+        alert('请选择选项');
+        return;
+      }
+      // 第二次不选才通关
+      isCorrect = true;
+    } else {
+      isCorrect = false;
+    }
   }
 
   if (isCorrect) {
